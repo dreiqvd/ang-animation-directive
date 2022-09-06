@@ -10,17 +10,9 @@ Aside from being tedious, this is difficult to maintain as the project gets bigg
 One simple solution is to implement a custom directive that will handle adding of class names within the element. Now you only need to manage element animations in a single file.
 
 ## Usage
-```html
-<div class="container">
-  <h1 appAnimate animation="zoomIn" hoverAnimation="tada">Hello, World!</h1>
-  <p appAnimate animation="rotateIn" animationSpeed="slow" hoverAnimation="hinge">Hover Me!</p>
-</div>
-```
-
-## Using the directive in your Angular application
 You can download / fork this repository and copy the `src/animation-directive` folder to your application.
 
-### Import the directive to your module:
+#### Import the directive to your module:
 ```typescript
 @NgModule({
   imports: [
@@ -29,6 +21,16 @@ You can download / fork this repository and copy the `src/animation-directive` f
   ],
   ...
 })
+```
+#### Use in your templates
+```html
+<div class="container">
+  <h1 appAnimate animation="zoomIn" hoverAnimation="tada">Hello, World!</h1>
+  <p appAnimate animation="rotateIn" [animationDelay]="1"
+    animationSpeed="slow" hoverAnimation="hinge">
+    Hover Me!
+  </p>
+</div>
 ```
 
 The directive is fully customizable should you wish to modify or add features.
