@@ -6,24 +6,27 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[appAnimate]',
-  exportAs:'appAnimate'
+  exportAs: 'appAnimate',
 })
 export class AnimationDirective {
-  /** Name of the animation to be added on the element. This is usually used for entrance
+  /**
+   * Name of the animation to be added on the element. This is usually used for entrance
    * animations. This is optional since you might only want to use hover animation.
    */
   @Input() animation?: string;
 
-  /** Duration of the animation. This is also the duration when the animation class will be removed from the element
+  /**
+   * Duration of the animation. This is also the duration when the animation class will be removed from the element
    * P.S. Animation classes are removed from the element after a certain duration to avoid conflicts with other
    * animations.
    * Ref: https://animate.style/#javascript
    */
   @Input() animationDuration: number = 2;
 
-  /** Animation speed (optional)
+  /**
+   * Animation speed (optional)
    * Ref: https://animate.style/#utilities
-  */
+   */
   @Input() animationSpeed?: 'slow' | 'slower' | 'fast' | 'faster';
 
   /**
@@ -38,7 +41,8 @@ export class AnimationDirective {
    */
   @Input() hoverAnimation?: string;
 
-  /** A private property to identify if the animation is already removed.
+  /**
+   * A private property to identify if the animation is already removed.
    * This is used to prevent overlapping of hover animation with entrance animation.
    */
   private animationRemoved = false;
@@ -62,14 +66,17 @@ export class AnimationDirective {
   }
 
   public animate() {
-    this.ref.nativeElement.style.setProperty('--animation-duration', `${this.animationDuration}s`)
+    this.ref.nativeElement.style.setProperty(
+      '--animation-duration',
+      `${this.animationDuration}s`
+    );
     this.addClass('animated');
     if (this.animationDelay) {
       this.addClass(`delay-${this.animationDelay}s`);
     }
     this.addClass(this.animationSpeed ?? '');
     this.addClass(this.animation ?? '');
-    // Remove animation class after a set duration. This is to avoid 
+    // Remove animation class after a set duration. This is to avoid
     // conflicts with other animations that you want to add.
     setTimeout(() => {
       this.removeClass(this.animation ?? '');
