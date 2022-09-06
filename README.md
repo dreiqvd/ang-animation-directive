@@ -1,27 +1,38 @@
-# AnimationDirective
+# Angular Animation Directive
+This is a custom Angular directive for managing animation classes from the popular library, [Animate.css](https://animate.style/).
+<br> Animations from animate.css (and other commonly used animation libraries) are usually triggered by adding custom classes within the element.
+<br> Example:
+```html
+<h1 class="animate__animated animate__bounce">An animated element</h1>
+```
+Aside from being tedious, this is difficult to maintain as the project gets bigger — if you need to change your animation library, you would also need to update all animation classes that you used in your component templates.
+<br>
+One simple solution is to implement a custom directive that will handle adding of class names within the element. Now you only need to manage element animations in a single file.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+## Usage
+```html
+<div class="container">
+  <h1 appAnimate animation="zoomIn" hoverAnimation="tada">Hello, World!</h1>
+  <p appAnimate animation="rotateIn" animationSpeed="slow" hoverAnimation="hinge">Hover Me!</p>
+</div>
+```
 
-## Development server
+## Using the directive in your Angular application
+You can download / fork this repository and copy the `src/animation-directive` folder to your application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Import the directive to your module:
+```typescript
+@NgModule({
+  imports: [
+    ...
+    AnimationDirectiveModule
+  ],
+  ...
+})
+```
 
-## Code scaffolding
+The directive is fully customizable should you wish to modify or add features.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Running the test application
+For demo, you can run this application by executing `ng serve` inside the project. <br>
+**Note:** The test application runs in Angular 14.
